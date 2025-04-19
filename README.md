@@ -12,3 +12,41 @@ There are basically three traversal techniques for a binary tree that are:
     -Preorder traversal.
     -Inorder traversal.
     *Postorder traversal.
+
+
+#For  exepetional day 
+#include "binary_trees.h"
+#include <stdlib.h>
+
+/**
+ * binary_tree_insert_right - inserts a node as the right child of another
+ * @parent: a pointer to the node to insert the right-child
+ * @value: the value to store in the new node
+ * Return: pointer or NULL
+ */
+
+binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value)
+{
+    binary_tree_t *newnode;
+
+    if (parent == NULL)
+        return (NULL);
+
+    newnode = malloc(sizeof(binary_tree_t));
+    if (newnode == NULL)
+    {
+        return (NULL);
+    }
+
+    newnode->n = value;
+    newnode->parent = parent;
+    newnode->left = NULL;
+    newnode->right = parent->right;
+    parent->right = newnode;
+    if (newnode->right)
+        newnode->right->parent = newnode;
+
+    return (newnode);
+}
+
+
